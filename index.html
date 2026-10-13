@@ -34,23 +34,30 @@
             filter: brightness(1.2);
         }
 
-        .fm-cell {
+        .track-box {
             cursor: pointer;
-            transition: opacity 0.2s;
+            transition: all 0.2s;
+            border-bottom: 1px solid #18181b;
+            padding-bottom: 6px;
         }
-        .fm-cell:hover {
-            opacity: 1 !important;
+        .track-box:hover {
+            color: #ffffff;
+            border-color: #3f3f46;
+        }
+        .track-box.active {
+            color: #ffffff;
+            border-color: #10b981;
         }
     </style>
 </head>
 <body class="min-h-screen flex items-center justify-center p-4 sm:p-8">
 
-    <div class="w-full max-w-4xl mx-auto flex flex-col justify-between space-y-12 my-auto">
+    <div class="w-full max-w-4xl mx-auto flex flex-col justify-between space-y-10 my-auto">
         
         <!-- ส่วนบน: รูปโปรไฟล์ (ซ้าย) + ข้อมูล (ขวา) -->
         <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
             
-            <div class="w-52 h-64 border border-zinc-800/80 rounded-2xl overflow-hidden shadow-2xl bg-zinc-900 shrink-0 relative">
+            <div class="w-52 h-64 border border-zinc-800 rounded-2xl overflow-hidden shadow-2xl bg-zinc-900 shrink-0 relative">
                 <img src="profile.jpg" 
                      alt="Character" 
                      class="w-full h-full object-cover"
@@ -89,59 +96,85 @@
                     </div>
                     <div class="flex items-center gap-2">
                         <span class="w-2 h-2 rounded-full bg-zinc-600"></span>
-                        <span class="text-zinc-300">Spotify</span> <span class="text-zinc-600">•</span> Natural Disaster
+                        <span class="text-zinc-300">Spotify</span> <span class="text-zinc-600" id="current-track-name">• Natural Disaster</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ส่วนล่าง: ตารางคลื่นเสียง FM 1-17 (ซ้าย) + แบนเนอร์และเครื่องเล่นเพลง (ขวา) -->
+        <!-- ส่วนล่าง: ตารางคลื่นสัญญาณ Track 1-12 (ซ้าย) + แบนเนอร์และเครื่องเล่นเพลง (ขวา) -->
         <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-end pt-4 border-t border-zinc-900">
             
-            <!-- ตารางคลื่นเสียง FM 1-17 (วาดด้วย SVG ให้เหมือนต้นฉบับเป๊ะ) -->
+            <!-- ตารางคลื่นสัญญาณ Track 1-12 แบบต้นฉบับ malice -->
             <div class="md:col-span-7 grid grid-cols-4 gap-y-4 gap-x-3 text-[9px] text-zinc-500 font-mono select-none">
-                <!-- FM 1 -->
-                <div class="fm-cell opacity-60" onclick="playBeep(400)"><span class="text-[8px]">FM 1</span><svg class="w-full h-5 mt-0.5" viewBox="0 0 100 20"><path d="M0 10 Q 25 2, 50 10 T 100 10" fill="none" stroke="#fff" stroke-width="1.5"/></svg></div>
-                <!-- FM 2 -->
-                <div class="fm-cell opacity-60" onclick="playBeep(450)"><span class="text-[8px]">FM 2</span><svg class="w-full h-5 mt-0.5" viewBox="0 0 100 20"><path d="M0 10 L 10 2 L 20 18 L 30 5 L 40 15 L 50 10 L 60 4 L 70 16 L 80 8 L 90 12 L 100 10" fill="none" stroke="#fff" stroke-width="1.2"/></svg></div>
-                <!-- FM 3 -->
-                <div class="fm-cell opacity-60" onclick="playBeep(500)"><span class="text-[8px]">FM 3</span><svg class="w-full h-5 mt-0.5" viewBox="0 0 100 20"><line x1="10" y1="2" x2="10" y2="18" stroke="#fff" stroke-width="1.5"/><line x1="25" y1="5" x2="25" y2="15" stroke="#fff" stroke-width="1.5"/><line x1="40" y1="1" x2="40" y2="19" stroke="#fff" stroke-width="1.5"/><line x1="55" y1="6" x2="55" y2="14" stroke="#fff" stroke-width="1.5"/><line x1="70" y1="3" x2="70" y2="17" stroke="#fff" stroke-width="1.5"/><line x1="85" y1="7" x2="85" y2="13" stroke="#fff" stroke-width="1.5"/></svg></div>
-                <!-- FM 4 -->
-                <div class="fm-cell opacity-60" onclick="playBeep(550)"><span class="text-[8px]">FM 4</span><svg class="w-full h-5 mt-0.5" viewBox="0 0 100 20"><path d="M0 10 Q 25 18, 50 10 T 100 10" fill="none" stroke="#fff" stroke-width="1.5"/></svg></div>
-                <!-- FM 5 -->
-                <div class="fm-cell opacity-60" onclick="playBeep(600)"><span class="text-[8px]">FM 5</span><svg class="w-full h-5 mt-0.5" viewBox="0 0 100 20"><line x1="15" y1="10" x2="15" y2="10" stroke="#fff" stroke-width="2"/><line x1="35" y1="5" x2="35" y2="15" stroke="#fff" stroke-width="2"/><line x1="55" y1="2" x2="55" y2="18" stroke="#fff" stroke-width="2"/><line x1="75" y1="7" x2="75" y2="13" stroke="#fff" stroke-width="2"/></svg></div>
-                <!-- FM 6 -->
-                <div class="fm-cell opacity-60" onclick="playBeep(300)"><span class="text-[8px]">FM 6</span><svg class="w-full h-5 mt-0.5" viewBox="0 0 100 20"><line x1="10" y1="4" x2="10" y2="16" stroke="#fff" stroke-width="1"/><line x1="20" y1="2" x2="20" y2="18" stroke="#fff" stroke-width="1"/><line x1="30" y1="6" x2="30" y2="14" stroke="#fff" stroke-width="1"/><line x1="40" y1="1" x2="40" y2="19" stroke="#fff" stroke-width="1"/><line x1="50" y1="5" x2="50" y2="15" stroke="#fff" stroke-width="1"/><line x1="60" y1="3" x2="60" y2="17" stroke="#fff" stroke-width="1"/><line x1="70" y1="4" x2="70" y2="16" stroke="#fff" stroke-width="1"/><line x1="80" y1="2" x2="80" y2="18" stroke="#fff" stroke-width="1"/></svg></div>
-                <!-- FM 7 -->
-                <div class="fm-cell opacity-60" onclick="playBeep(350)"><span class="text-[8px]">FM 7</span><svg class="w-full h-5 mt-0.5" viewBox="0 0 100 20"><path d="M0 10 L 15 1 L 30 19 L 45 5 L 60 15 L 75 8 L 90 12 L 100 10" fill="none" stroke="#fff" stroke-width="1.2"/></svg></div>
-                <!-- FM 8 -->
-                <div class="fm-cell opacity-60" onclick="playBeep(380)"><span class="text-[8px]">FM 8</span><svg class="w-full h-5 mt-0.5" viewBox="0 0 100 20"><path d="M0 10 Q 25 5, 50 10 T 100 10" fill="none" stroke="#fff" stroke-width="1.5"/></svg></div>
-                <!-- FM 9 -->
-                <div class="fm-cell opacity-60" onclick="playBeep(420)"><span class="text-[8px]">FM 9</span><svg class="w-full h-5 mt-0.5" viewBox="0 0 100 20"><line x1="10" y1="10" x2="90" y2="10" stroke="#fff" stroke-width="1"/></svg></div>
-                <!-- FM 10 -->
-                <div class="fm-cell opacity-60" onclick="playBeep(460)"><span class="text-[8px]">FM 10</span><svg class="w-full h-5 mt-0.5" viewBox="0 0 100 20"><path d="M0 10 L 20 4 L 40 16 L 60 8 L 80 12 L 100 10" fill="none" stroke="#fff" stroke-width="1.2"/></svg></div>
-                <!-- FM 11 -->
-                <div class="fm-cell opacity-60" onclick="playBeep(200)"><span class="text-[8px]">FM 11</span><svg class="w-full h-5 mt-0.5" viewBox="0 0 100 20"><line x1="10" y1="10" x2="90" y2="10" stroke="#fff" stroke-width="0.8"/></svg></div>
-                <!-- FM 12 -->
-                <div class="fm-cell opacity-60" onclick="playBeep(250)"><span class="text-[8px]">FM 12</span><svg class="w-full h-5 mt-0.5" viewBox="0 0 100 20"><path d="M0 5 L 50 15 L 100 5" fill="none" stroke="#fff" stroke-width="1.2"/></svg></div>
-                <!-- FM 13 -->
-                <div class="fm-cell opacity-60" onclick="playBeep(280)"><span class="text-[8px]">FM 13</span><svg class="w-full h-5 mt-0.5" viewBox="0 0 100 20"><line x1="10" y1="10" x2="90" y2="10" stroke="#fff" stroke-width="1"/></svg></div>
-                <!-- FM 14 -->
-                <div class="fm-cell opacity-60" onclick="playBeep(320)"><span class="text-[8px]">FM 14</span><svg class="w-full h-5 mt-0.5" viewBox="0 0 100 20"><line x1="20" y1="5" x2="20" y2="15" stroke="#fff" stroke-width="2"/><line x1="50" y1="2" x2="50" y2="18" stroke="#fff" stroke-width="2"/><line x1="80" y1="7" x2="80" y2="13" stroke="#fff" stroke-width="2"/></svg></div>
-                <!-- FM 15 -->
-                <div class="fm-cell opacity-60" onclick="playBeep(360)"><span class="text-[8px]">FM 15</span><svg class="w-full h-5 mt-0.5" viewBox="0 0 100 20"><path d="M0 10 Q 25 0, 50 10 T 100 10" fill="none" stroke="#fff" stroke-width="1.5"/></svg></div>
-                <!-- FM 16 -->
-                <div class="fm-cell opacity-60" onclick="playBeep(150)"><span class="text-[8px]">FM 16</span><svg class="w-full h-5 mt-0.5" viewBox="0 0 100 20"><line x1="10" y1="10" x2="90" y2="10" stroke="#fff" stroke-width="1"/></svg></div>
-                <!-- FM 17 -->
-                <div class="fm-cell opacity-60 col-span-4" onclick="playBeep(180)"><span class="text-[8px]">FM 17</span><svg class="w-full h-5 mt-0.5" viewBox="0 0 100 20"><path d="M0 15 L 10 12 L 20 10 L 30 8 L 40 6 L 50 4 L 60 8 L 70 11 L 80 14 L 90 12 L 100 10" fill="none" stroke="#fff" stroke-width="1.2"/></svg></div>
+                <!-- Track 1 -->
+                <div class="track-box active" onclick="changeTrack(0, 'Natural Disaster', 'enon')">
+                    <span>Track 1</span>
+                    <svg class="w-full h-5 mt-1" viewBox="0 0 100 20"><path d="M0 10 Q 25 2, 50 10 T 100 10" fill="none" stroke="#fff" stroke-width="1.5"/></svg>
+                </div>
+                <!-- Track 2 -->
+                <div class="track-box" onclick="changeTrack(1, 'Lo-Fi Chill Wave', 'afrinatiw')">
+                    <span>Track 2</span>
+                    <svg class="w-full h-5 mt-1" viewBox="0 0 100 20"><path d="M0 10 L 10 2 L 20 18 L 30 5 L 40 15 L 50 10 L 60 4 L 70 16 L 80 8 L 90 12 L 100 10" fill="none" stroke="#fff" stroke-width="1.2"/></svg>
+                </div>
+                <!-- Track 3 -->
+                <div class="track-box" onclick="changeTrack(2, 'Cyberpunk Synth', 'Retro Sound')">
+                    <span>Track 3</span>
+                    <svg class="w-full h-5 mt-1" viewBox="0 0 100 20"><line x1="10" y1="2" x2="10" y2="18" stroke="#fff" stroke-width="1.5"/><line x1="25" y1="5" x2="25" y2="15" stroke="#fff" stroke-width="1.5"/><line x1="40" y1="1" x2="40" y2="19" stroke="#fff" stroke-width="1.5"/><line x1="55" y1="6" x2="55" y2="14" stroke="#fff" stroke-width="1.5"/><line x1="70" y1="3" x2="70" y2="17" stroke="#fff" stroke-width="1.5"/></svg>
+                </div>
+                <!-- Track 4 -->
+                <div class="track-box" onclick="changeTrack(3, 'Ambient Space', 'Cosmos')">
+                    <span>Track 4</span>
+                    <svg class="w-full h-5 mt-1" viewBox="0 0 100 20"><path d="M0 10 Q 25 18, 50 10 T 100 10" fill="none" stroke="#fff" stroke-width="1.5"/></svg>
+                </div>
+                <!-- Track 5 -->
+                <div class="track-box" onclick="changeTrack(0, 'Natural Disaster', 'enon')">
+                    <span>Track 5</span>
+                    <svg class="w-full h-5 mt-1" viewBox="0 0 100 20"><line x1="15" y1="10" x2="15" y2="10" stroke="#fff" stroke-width="2"/><line x1="35" y1="5" x2="35" y2="15" stroke="#fff" stroke-width="2"/><line x1="55" y1="2" x2="55" y2="18" stroke="#fff" stroke-width="2"/></svg>
+                </div>
+                <!-- Track 6 -->
+                <div class="track-box" onclick="changeTrack(1, 'Lo-Fi Chill Wave', 'afrinatiw')">
+                    <span>Track 6</span>
+                    <svg class="w-full h-5 mt-1" viewBox="0 0 100 20"><line x1="10" y1="4" x2="10" y2="16" stroke="#fff" stroke-width="1"/><line x1="20" y1="2" x2="20" y2="18" stroke="#fff" stroke-width="1"/><line x1="30" y1="6" x2="30" y2="14" stroke="#fff" stroke-width="1"/><line x1="40" y1="1" x2="40" y2="19" stroke="#fff" stroke-width="1"/></svg>
+                </div>
+                <!-- Track 7 -->
+                <div class="track-box" onclick="changeTrack(2, 'Cyberpunk Synth', 'Retro Sound')">
+                    <span>Track 7</span>
+                    <svg class="w-full h-5 mt-1" viewBox="0 0 100 20"><path d="M0 10 L 15 1 L 30 19 L 45 5 L 60 15 L 75 8 L 100 10" fill="none" stroke="#fff" stroke-width="1.2"/></svg>
+                </div>
+                <!-- Track 8 -->
+                <div class="track-box" onclick="changeTrack(3, 'Ambient Space', 'Cosmos')">
+                    <span>Track 8</span>
+                    <svg class="w-full h-5 mt-1" viewBox="0 0 100 20"><path d="M0 10 Q 25 5, 50 10 T 100 10" fill="none" stroke="#fff" stroke-width="1.5"/></svg>
+                </div>
+                <!-- Track 9 -->
+                <div class="track-box" onclick="changeTrack(0, 'Natural Disaster', 'enon')">
+                    <span>Track 9</span>
+                    <svg class="w-full h-5 mt-1" viewBox="0 0 100 20"><line x1="10" y1="10" x2="90" y2="10" stroke="#fff" stroke-width="1"/></svg>
+                </div>
+                <!-- Track 10 -->
+                <div class="track-box" onclick="changeTrack(1, 'Lo-Fi Chill Wave', 'afrinatiw')">
+                    <span>Track 10</span>
+                    <svg class="w-full h-5 mt-1" viewBox="0 0 100 20"><path d="M0 10 L 20 4 L 40 16 L 60 8 L 100 10" fill="none" stroke="#fff" stroke-width="1.2"/></svg>
+                </div>
+                <!-- Track 11 -->
+                <div class="track-box" onclick="changeTrack(2, 'Cyberpunk Synth', 'Retro Sound')">
+                    <span>Track 11</span>
+                    <svg class="w-full h-5 mt-1" viewBox="0 0 100 20"><line x1="10" y1="10" x2="90" y2="10" stroke="#fff" stroke-width="0.8"/></svg>
+                </div>
+                <!-- Track 12 -->
+                <div class="track-box" onclick="changeTrack(3, 'Ambient Space', 'Cosmos')">
+                    <span>Track 12</span>
+                    <svg class="w-full h-5 mt-1" viewBox="0 0 100 20"><path d="M0 5 L 50 15 L 100 5" fill="none" stroke="#fff" stroke-width="1.2"/></svg>
+                </div>
             </div>
 
-            <!-- ฝั่งขวา: แบนเนอร์ป้าย + เครื่องเล่นเพลงมินิมอล (ใช้งานได้จริง) -->
+            <!-- ฝั่งขวา: แบนเนอร์ป้าย + เครื่องเล่นเพลงมินิมอล (ใช้งานได้จริง 100%) -->
             <div class="md:col-span-5 flex flex-col space-y-3">
                 
                 <!-- แบนเนอร์ป้าย 88x31 -->
                 <div class="grid grid-cols-4 gap-1.5">
-                    <a href="https://open.spotify.com/intl-th/track/6F3TZeOG2uKDNDbUgoOE3S" target="_blank" class="badge-btn bg-emerald-950 border border-emerald-800 text-emerald-300">.hi!</a>
+                    <a href="#" class="badge-btn bg-emerald-950 border border-emerald-800 text-emerald-300">.hi!</a>
                     <a href="#" class="badge-btn bg-purple-950 border border-purple-800 text-purple-300">rawr!</a>
                     <a href="#" class="badge-btn bg-zinc-900 border border-zinc-700 text-zinc-300">88x31</a>
                     <a href="#" class="badge-btn bg-red-950 border border-red-800 text-red-300">arch.sys</a>
@@ -151,23 +184,25 @@
                     <a href="#" class="badge-btn bg-emerald-950 border border-emerald-800 text-emerald-300">watameln</a>
                 </div>
 
-                <!-- เครื่องเล่นเพลง UI มินิมอล -->
+                <!-- เครื่องเล่นเพลง UI มินิมอล ควบคุมได้จริง -->
                 <div class="bg-zinc-900/90 border border-zinc-800 rounded-md p-3 flex flex-col space-y-2 text-xs font-mono shadow-xl">
                     <div class="flex items-center justify-between">
                         <div class="truncate pr-2">
-                            <span class="text-zinc-100 font-bold">Natural Disaster</span>
+                            <span class="text-zinc-100 font-bold" id="song-title">Natural Disaster</span>
                             <span class="text-zinc-600 mx-1">-</span>
-                            <span class="text-zinc-400">enon</span>
+                            <span class="text-zinc-400" id="song-artist">enon</span>
                         </div>
-                        <div class="flex items-center gap-2.5 text-zinc-300 shrink-0">
+                        <div class="flex items-center gap-2 text-zinc-300 shrink-0">
+                            <button onclick="prevTrack()" class="hover:text-white transition"><i data-lucide="skip-back" class="w-3.5 h-3.5"></i></button>
                             <button onclick="toggleAudioPlay()" id="play-btn" class="hover:text-white transition bg-zinc-800 p-1.5 rounded flex items-center justify-center">
                                 <i data-lucide="play" id="play-icon" class="w-3.5 h-3.5"></i>
                             </button>
+                            <button onclick="nextTrack()" class="hover:text-white transition"><i data-lucide="skip-forward" class="w-3.5 h-3.5"></i></button>
                         </div>
                     </div>
                     
                     <div class="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden cursor-pointer" onclick="seekAudio(event)">
-                        <div id="progress-bar" class="bg-zinc-400 h-full w-0 transition-all duration-100"></div>
+                        <div id="progress-bar" class="bg-emerald-500 h-full w-0 transition-all duration-100"></div>
                     </div>
                     
                     <div class="flex justify-between text-[9px] text-zinc-500">
@@ -182,37 +217,46 @@
 
     </div>
 
-    <!-- ไฟล์เสียงเพลง (Natural Disaster - enon) -->
-    <audio id="bg-audio" preload="auto" loop>
+    <!-- แหล่งเสียงเพลงที่ใช้งานได้จริง (รองรับระบบเล่นเพลงในเว็บ) -->
+    <audio id="bg-audio" preload="auto">
         <source src="https://p.scdn.co/mp3-preview/380721245e128a3f87343e86c0989f6607d72c0c?cid=2546255760824b248a8cf325c9b68a5c" type="audio/mpeg">
     </audio>
 
     <script>
         lucide.createIcons();
 
-        // เสียงวิทยุ FM
-        function playBeep(freq) {
-            try {
-                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.type = 'triangle';
-                osc.frequency.value = freq;
-                gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.1);
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.start();
-                osc.stop(audioCtx.currentTime + 0.1);
-            } catch(e) {}
-        }
+        // รายการเพลง
+        const playlist = [
+            { title: "Natural Disaster", artist: "enon", src: "https://p.scdn.co/mp3-preview/380721245e128a3f87343e86c0989f6607d72c0c?cid=2546255760824b248a8cf325c9b68a5c" },
+            { title: "Lo-Fi Chill Wave", artist: "afrinatiw", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
+            { title: "Cyberpunk Synth", artist: "Retro Sound", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
+            { title: "Ambient Space", artist: "Cosmos", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" }
+        ];
 
-        // ควบคุมเครื่องเล่นเพลงในเว็บ
+        let currentTrackIndex = 0;
         const audio = document.getElementById('bg-audio');
         const playIcon = document.getElementById('play-icon');
         const progressBar = document.getElementById('progress-bar');
         const currentTimeEl = document.getElementById('current-time');
+        const songTitleEl = document.getElementById('song-title');
+        const songArtistEl = document.getElementById('song-artist');
+        const currentTrackNameEl = document.getElementById('current-track-name');
         let isAudioPlaying = false;
+
+        function loadTrack(index) {
+            currentTrackIndex = index;
+            audio.src = playlist[index].src;
+            songTitleEl.innerText = playlist[index].title;
+            songArtistEl.innerText = playlist[index].artist;
+            currentTrackNameEl.innerText = "• " + playlist[index].title;
+            
+            // อัปเดตไฮไลต์ช่องคลื่นสัญญาณ
+            const boxes = document.querySelectorAll('.track-box');
+            boxes.forEach((b, i) => {
+                if (i === index % boxes.length) b.classList.add('active');
+                else b.classList.remove('active');
+            });
+        }
 
         function toggleAudioPlay() {
             if (isAudioPlaying) {
@@ -220,11 +264,31 @@
                 playIcon.setAttribute('data-lucide', 'play');
                 isAudioPlaying = false;
             } else {
-                audio.play().catch(e => console.log("Autoplay restricted"));
-                playIcon.setAttribute('data-lucide', 'pause');
-                isAudioPlaying = true;
+                audio.play().then(() => {
+                    playIcon.setAttribute('data-lucide', 'pause');
+                    isAudioPlaying = true;
+                }).catch(e => console.log("Playback restricted"));
             }
             lucide.createIcons();
+        }
+
+        function changeTrack(index, title, artist) {
+            loadTrack(index);
+            audio.play().then(() => {
+                playIcon.setAttribute('data-lucide', 'pause');
+                isAudioPlaying = true;
+                lucide.createIcons();
+            }).catch(e => console.log("Playback restricted"));
+        }
+
+        function nextTrack() {
+            currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+            changeTrack(currentTrackIndex);
+        }
+
+        function prevTrack() {
+            currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
+            changeTrack(currentTrackIndex);
         }
 
         function seekAudio(event) {
@@ -246,11 +310,7 @@
         });
 
         audio.addEventListener('ended', () => {
-            isAudioPlaying = false;
-            playIcon.setAttribute('data-lucide', 'play');
-            progressBar.style.width = '0%';
-            currentTimeEl.innerText = '0:00';
-            lucide.createIcons();
+            nextTrack();
         });
     </script>
 </body>
