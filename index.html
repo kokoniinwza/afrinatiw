@@ -40,21 +40,29 @@
         .fm-box:hover {
             color: #ffffff;
         }
+
+        /* แอนิเมชันคลื่นวิทยุ Visualizer */
+        @keyframes wave {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; color: #fff; }
+        }
+        .visualizing {
+            animation: wave 0.8s infinite ease-in-out;
+        }
     </style>
 </head>
 <body class="min-h-screen flex items-center justify-center p-4 sm:p-6">
 
-    <div class="w-full max-w-4xl mx-auto flex flex-col justify-between space-y-12 my-auto">
+    <div class="w-full max-w-4xl mx-auto flex flex-col justify-between space-y-10 my-auto">
         
-        <!-- ส่วนบน: รูปภาพที่แนบมา + ข้อมูลโปรไฟล์ตรงกลาง -->
+        <!-- ส่วนบน: รูปภาพตัวละครด้านซ้าย + ข้อมูลโปรไฟล์ตรงกลาง -->
         <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
             
-            <!-- รูปภาพที่แนบมา (แทนที่ Roblox) -->
+            <!-- รูปภาพตัวละครที่แนบมา -->
             <div class="w-48 h-64 border border-zinc-800 rounded-xl overflow-hidden shadow-2xl bg-zinc-900 shrink-0">
                 <img src="75fb23f57aad945429ad45ff12971bd9.jpg" 
                      alt="Profile Character" 
-                     class="w-full h-full object-cover"
-                     onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop'">
+                     class="w-full h-full object-cover">
             </div>
 
             <!-- รายละเอียดโปรไฟล์ -->
@@ -98,38 +106,38 @@
             </div>
         </div>
 
-        <!-- ส่วนล่าง: คลื่นวิทยุ FM 1-17 (ซ้าย) + แบนเนอร์และเครื่องเล่นเพลง (ขวา) -->
+        <!-- ส่วนล่าง: คลื่นวิทยุ FM 1-17 พร้อม Visualizer (ซ้าย) + แบนเนอร์และเครื่องเล่นเพลง (ขวา) -->
         <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-end pt-4 border-t border-zinc-900/80">
             
-            <!-- คลื่นวิทยุ FM 1 - 17 (คลิกแล้วมีเสียงชิปสไตล์เรโทรแบบในคลิป) -->
-            <div class="md:col-span-7 grid grid-cols-5 gap-y-3 gap-x-2 text-[9px] text-zinc-600 font-mono select-none">
-                <div class="fm-box border-b border-zinc-900 pb-1" onclick="playBeep(440)">FM 1<br><span class="text-zinc-500">~~/\~~</span></div>
-                <div class="fm-box border-b border-zinc-900 pb-1" onclick="playBeep(520)">FM 2<br><span class="text-zinc-500">/\/\/\</span></div>
-                <div class="fm-box border-b border-zinc-900 pb-1" onclick="playBeep(600)">FM 3<br><span class="text-zinc-500">||||||</span></div>
-                <div class="fm-box border-b border-zinc-900 pb-1" onclick="playBeep(680)">FM 4<br><span class="text-zinc-500">~~/\~~</span></div>
-                <div class="fm-box border-b border-zinc-900 pb-1" onclick="playBeep(760)">FM 5<br><span class="text-zinc-500">||||||</span></div>
+            <!-- คลื่นวิทยุ FM 1 - 17 พร้อมเอฟเฟกต์กระพริบ Visualizer -->
+            <div id="fm-grid" class="md:col-span-7 grid grid-cols-5 gap-y-3 gap-x-2 text-[9px] text-zinc-600 font-mono select-none">
+                <div class="fm-box border-b border-zinc-900 pb-1" onclick="triggerFM(this, 440)">FM 1<br><span class="text-zinc-500">~~/\~~</span></div>
+                <div class="fm-box border-b border-zinc-900 pb-1" onclick="triggerFM(this, 520)">FM 2<br><span class="text-zinc-500">/\/\/\</span></div>
+                <div class="fm-box border-b border-zinc-900 pb-1" onclick="triggerFM(this, 600)">FM 3<br><span class="text-zinc-500">||||||</span></div>
+                <div class="fm-box border-b border-zinc-900 pb-1" onclick="triggerFM(this, 680)">FM 4<br><span class="text-zinc-500">~~/\~~</span></div>
+                <div class="fm-box border-b border-zinc-900 pb-1" onclick="triggerFM(this, 760)">FM 5<br><span class="text-zinc-500">||||||</span></div>
                 
-                <div class="fm-box border-b border-zinc-900 pb-1" onclick="playBeep(320)">FM 6<br><span class="text-zinc-500">||||||</span></div>
-                <div class="fm-box border-b border-zinc-900 pb-1" onclick="playBeep(380)">FM 7<br><span class="text-zinc-500">/\/\/\</span></div>
-                <div class="fm-box border-b border-zinc-900 pb-1" onclick="playBeep(420)">FM 8<br><span class="text-zinc-500">/\/\/\</span></div>
-                <div class="fm-box border-b border-zinc-900 pb-1" onclick="playBeep(480)">FM 9<br><span class="text-zinc-500">______</span></div>
-                <div class="fm-box border-b border-zinc-900 pb-1" onclick="playBeep(540)">FM 10<br><span class="text-zinc-500">||||||</span></div>
+                <div class="fm-box border-b border-zinc-900 pb-1" onclick="triggerFM(this, 320)">FM 6<br><span class="text-zinc-500">||||||</span></div>
+                <div class="fm-box border-b border-zinc-900 pb-1" onclick="triggerFM(this, 380)">FM 7<br><span class="text-zinc-500">/\/\/\</span></div>
+                <div class="fm-box border-b border-zinc-900 pb-1" onclick="triggerFM(this, 420)">FM 8<br><span class="text-zinc-500">/\/\/\</span></div>
+                <div class="fm-box border-b border-zinc-900 pb-1" onclick="triggerFM(this, 480)">FM 9<br><span class="text-zinc-500">______</span></div>
+                <div class="fm-box border-b border-zinc-900 pb-1" onclick="triggerFM(this, 540)">FM 10<br><span class="text-zinc-500">||||||</span></div>
 
-                <div class="fm-box pb-1" onclick="playBeep(220)">FM 11<br><span class="text-zinc-500">||||||</span></div>
-                <div class="fm-box pb-1" onclick="playBeep(260)">FM 12<br><span class="text-zinc-500">~~/\~~</span></div>
-                <div class="fm-box pb-1" onclick="playBeep(300)">FM 13<br><span class="text-zinc-500">______</span></div>
-                <div class="fm-box pb-1" onclick="playBeep(340)">FM 14<br><span class="text-zinc-500">||||||</span></div>
-                <div class="fm-box pb-1" onclick="playBeep(400)">FM 15<br><span class="text-zinc-500">/\/\/\</span></div>
-                <div class="fm-box pb-1" onclick="playBeep(180)">FM 16<br><span class="text-zinc-500">______</span></div>
-                <div class="fm-box pb-1" onclick="playBeep(200)">FM 17<br><span class="text-zinc-500">||||||</span></div>
+                <div class="fm-box pb-1" onclick="triggerFM(this, 220)">FM 11<br><span class="text-zinc-500">||||||</span></div>
+                <div class="fm-box pb-1" onclick="triggerFM(this, 260)">FM 12<br><span class="text-zinc-500">~~/\~~</span></div>
+                <div class="fm-box pb-1" onclick="triggerFM(this, 300)">FM 13<br><span class="text-zinc-500">______</span></div>
+                <div class="fm-box pb-1" onclick="triggerFM(this, 340)">FM 14<br><span class="text-zinc-500">||||||</span></div>
+                <div class="fm-box pb-1" onclick="triggerFM(this, 400)">FM 15<br><span class="text-zinc-500">/\/\/\</span></div>
+                <div class="fm-box pb-1" onclick="triggerFM(this, 180)">FM 16<br><span class="text-zinc-500">______</span></div>
+                <div class="fm-box pb-1" onclick="triggerFM(this, 200)">FM 17<br><span class="text-zinc-500">||||||</span></div>
             </div>
 
-            <!-- ฝั่งขวา: แบนเนอร์ปุ่ม + เครื่องเล่นเพลงใช้งานได้จริง -->
+            <!-- ฝั่งขวา: แบนเนอร์ปุ่ม + เครื่องเล่นเพลงเล่นได้จริงในเว็บ -->
             <div class="md:col-span-5 flex flex-col space-y-4">
                 
                 <!-- แบนเนอร์ป้าย 88x31 -->
                 <div class="grid grid-cols-4 gap-1.5">
-                    <a href="https://open.spotify.com/intl-th/track/6F3TZeOG2uKDNDbUgoOE3S" target="_blank" class="badge-btn bg-emerald-950 border border-emerald-800 text-emerald-300">.hi!</a>
+                    <a href="#" class="badge-btn bg-emerald-950 border border-emerald-800 text-emerald-300">.hi!</a>
                     <a href="#" class="badge-btn bg-purple-950 border border-purple-800 text-purple-300">rawr!</a>
                     <a href="#" class="badge-btn bg-zinc-900 border border-zinc-700 text-zinc-300">88x31</a>
                     <a href="#" class="badge-btn bg-red-950 border border-red-800 text-red-300">arch.sys</a>
@@ -139,31 +147,28 @@
                     <a href="#" class="badge-btn bg-emerald-950 border border-emerald-800 text-emerald-300">watameln</a>
                 </div>
 
-                <!-- เครื่องเล่นเพลง (เชื่อมต่อเพลง Natural Disaster จาก Spotify) -->
+                <!-- เครื่องเล่นเพลง (เล่นเสียงในเว็บจริง มีหลอดเวลาขยับ) -->
                 <div class="bg-zinc-900/80 border border-zinc-800/90 rounded-md p-3 flex flex-col space-y-2 text-xs font-mono shadow-lg">
                     <div class="flex items-center justify-between">
                         <div class="truncate pr-2">
                             <span class="text-zinc-100 font-bold">Natural Disaster</span>
                             <span class="text-zinc-600 mx-1">-</span>
-                            <span class="text-zinc-400">Spotify Audio</span>
+                            <span class="text-zinc-400">Audio Stream</span>
                         </div>
                         <div class="flex items-center gap-2.5 text-zinc-300 shrink-0">
-                            <button onclick="togglePlay()" id="play-btn" class="hover:text-white bg-zinc-800 p-1.5 rounded transition">
+                            <button onclick="toggleAudioPlay()" id="play-btn" class="hover:text-white bg-zinc-800 p-1.5 rounded transition">
                                 <i data-lucide="play" id="play-icon" class="w-3.5 h-3.5"></i>
                             </button>
-                            <a href="https://open.spotify.com/intl-th/track/6F3TZeOG2uKDNDbUgoOE3S?si=fae13b36ff854687" target="_blank" class="hover:text-white bg-zinc-800 p-1.5 rounded transition" title="Open in Spotify">
-                                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                            </a>
                         </div>
                     </div>
                     
                     <div class="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden">
-                        <div id="progress-bar" class="bg-emerald-500 h-full w-0 transition-all duration-300"></div>
+                        <div id="progress-bar" class="bg-emerald-500 h-full w-0 transition-all duration-100"></div>
                     </div>
                     
                     <div class="flex justify-between text-[9px] text-zinc-500">
                         <span id="current-time">0:00</span>
-                        <span>Spotify Track</span>
+                        <span id="duration-time">3:43</span>
                     </div>
                 </div>
 
@@ -173,15 +178,26 @@
 
     </div>
 
-    <!-- ซ่อน Spotify Embed จริงไว้สำหรับควบคุมการเล่นเสียง -->
-    <div style="display:none;">
-        <iframe id="spotify-iframe" src="https://open.spotify.com/embed/track/6F3TZeOG2uKDNDbUgoOE3S?utm_source=generator" width="300" height="80" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-    </div>
+    <!-- ไฟล์เสียงเพลงสำหรับเล่นในเว็บ (ใช้ตัวอย่างเสียงเพลงบรรเลงสไตล์โลฟาย/อินดี้) -->
+    <audio id="bg-audio" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
         lucide.createIcons();
 
-        // ฟังก์ชันสร้างเสียงบี๊บเรโทร (เมื่อกดคลื่น FM 1-17)
+        // ฟังก์ชันคลิกวิทยุ FM ให้มีเสียงบี๊บและแสดงเอฟเฟกต์กระพริบ (Visualizer)
+        function triggerFM(element, freq) {
+            playBeep(freq);
+            // สุ่มเปิดเอฟเฟกต์กระพริบจำลองคลื่นวิทยุ
+            const boxes = document.querySelectorAll('.fm-box');
+            boxes.forEach(b => b.classList.remove('visualizing'));
+            element.classList.add('visualizing');
+            setTimeout(() => {
+                element.classList.remove('visualizing');
+            }, 600);
+        }
+
         function playBeep(freq) {
             try {
                 const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -189,37 +205,57 @@
                 const gain = audioCtx.createGain();
                 osc.type = 'square';
                 osc.frequency.value = freq;
-                gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
                 gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.15);
                 osc.connect(gain);
                 gain.connect(audioCtx.destination);
                 osc.start();
                 osc.stop(audioCtx.currentTime + 0.15);
             } catch(e) {
-                console.log("Audio Context not supported");
+                console.log("Audio Context error");
             }
         }
 
-        // ฟังก์ชันควบคุมการเล่นเพลงจำลองร่วมกับลิงก์ Spotify
-        let isPlaying = false;
-        function togglePlay() {
-            isPlaying = !isPlaying;
-            const playIcon = document.getElementById('play-icon');
-            const progressBar = document.getElementById('progress-bar');
-            
-            if (isPlaying) {
-                playIcon.setAttribute('data-lucide', 'pause');
-                progressBar.style.width = '100%';
-                document.getElementById('current-time').innerText = '3:40';
-                // เปิดลิงก์ฟังจริงบน Spotify ในแท็บใหม่ให้ด้วยเพื่อความสะดวก
-                window.open('https://open.spotify.com/intl-th/track/6F3TZeOG2uKDNDbUgoOE3S?si=fae13b36ff854687', '_blank');
-            } else {
+        // ฟังก์ชันควบคุมการเล่นเพลงในเว็บจริง (ไม่เด้งออกนอกเว็บ)
+        const audio = document.getElementById('bg-audio');
+        const playIcon = document.getElementById('play-icon');
+        const progressBar = document.getElementById('progress-bar');
+        const currentTimeEl = document.getElementById('current-time');
+        let isAudioPlaying = false;
+
+        function toggleAudioPlay() {
+            if (isAudioPlaying) {
+                audio.pause();
                 playIcon.setAttribute('data-lucide', 'play');
-                progressBar.style.width = '0%';
-                document.getElementById('current-time').innerText = '0:00';
+                isAudioPlaying = false;
+            } else {
+                audio.play().catch(e => console.log("Autoplay blocked"));
+                playIcon.setAttribute('data-lucide', 'pause');
+                isAudioPlaying = true;
             }
             lucide.createIcons();
         }
+
+        // อัปเดตหลอดเวลาเพลงตามจริง
+        audio.addEventListener('timeupdate', () => {
+            if (audio.duration) {
+                const percent = (audio.currentTime / audio.duration) * 100;
+                progressBar.style.width = percent + '%';
+                
+                let mins = Math.floor(audio.currentTime / 60);
+                let secs = Math.floor(audio.currentTime % 60);
+                if (secs < 10) secs = '0' + secs;
+                currentTimeEl.innerText = mins + ':' + secs;
+            }
+        });
+
+        audio.addEventListener('ended', () => {
+            isAudioPlaying = false;
+            playIcon.setAttribute('data-lucide', 'play');
+            progressBar.style.width = '0%';
+            currentTimeEl.innerText = '0:00';
+            lucide.createIcons();
+        });
     </script>
 </body>
 </html>
