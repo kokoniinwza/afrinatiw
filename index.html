@@ -11,15 +11,14 @@
         
         body {
             font-family: 'JetBrains Mono', monospace;
-            background-color: #0d0d0d;
+            background-color: #0b0b0b;
             color: #b0b0b0;
         }
 
-        /* ปุ่มรูปภาพ/แบนเนอร์สไตล์ 88x31 แบบในต้นฉบับ */
         .badge-btn {
-            height: 36px;
+            height: 32px;
             border-radius: 4px;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
             display: flex;
             align-items: center;
@@ -33,50 +32,57 @@
             transform: translateY(-1px);
             filter: brightness(1.2);
         }
+
+        .fm-box {
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .fm-box:hover {
+            color: #ffffff;
+        }
     </style>
 </head>
-<body class="min-h-screen flex items-center justify-center p-4 sm:p-8">
+<body class="min-h-screen flex items-center justify-center p-4 sm:p-6">
 
-    <div class="w-full max-w-3xl mx-auto flex flex-col space-y-10 my-auto">
+    <div class="w-full max-w-4xl mx-auto flex flex-col justify-between space-y-12 my-auto">
         
-        <!-- ส่วนบน: ตัวละคร Roblox + ข้อมูลโปรไฟล์ -->
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-10">
+        <!-- ส่วนบน: รูปภาพที่แนบมา + ข้อมูลโปรไฟล์ตรงกลาง -->
+        <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
             
-            <!-- รูปตัวละคร Roblox 3D แบบต้นฉบับ -->
-            <div class="w-48 h-60 shrink-0 flex items-center justify-center">
-                <img src="https://tr.rbxcdn.com/30DAY-Avatar-D88D7321F534F6E1C85A827CD09028A7-Png/352/352/Avatar/Png/noFilter" 
-                     alt="Roblox Avatar" 
-                     class="h-full object-contain drop-shadow-[0_10px_10px_rgba(0,0,0,0.8)]">
+            <!-- รูปภาพที่แนบมา (แทนที่ Roblox) -->
+            <div class="w-48 h-64 border border-zinc-800 rounded-xl overflow-hidden shadow-2xl bg-zinc-900 shrink-0">
+                <img src="75fb23f57aad945429ad45ff12971bd9.jpg" 
+                     alt="Profile Character" 
+                     class="w-full h-full object-cover"
+                     onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop'">
             </div>
 
-            <!-- รายละเอียดโปรไฟล์ด้านขวา -->
-            <div class="flex flex-col items-center sm:items-start text-center sm:text-left space-y-4">
+            <!-- รายละเอียดโปรไฟล์ -->
+            <div class="flex flex-col items-center md:items-start text-center md:text-left space-y-4">
                 
                 <div class="flex items-center gap-4">
-                    <!-- รูปโปรไฟล์อวาตาร์กลม -->
-                    <div class="w-16 h-16 rounded-lg overflow-hidden border border-zinc-800 shrink-0">
-                        <img src="https://tr.rbxcdn.com/30DAY-AvatarHeadshot-D88D7321F534F6E1C85A827CD09028A7-Png/150/150/AvatarHeadshot/Png/noFilter" 
-                             alt="Headshot" 
+                    <div class="w-16 h-16 rounded-full overflow-hidden border border-zinc-800 shrink-0">
+                        <img src="75fb23f57aad945429ad45ff12971bd9.jpg" 
+                             alt="Avatar" 
                              class="w-full h-full object-cover">
                     </div>
                     <div>
                         <h1 class="text-2xl font-bold text-white tracking-normal">hi, i'm <span class="text-white">afrinatiw</span></h1>
                         <p class="text-xs text-zinc-500 mt-1">i love coding & web development</p>
-                        <!-- ไอคอนโซเชียลเล็กๆ -->
-                        <div class="flex items-center justify-center sm:justify-start gap-2.5 mt-2 text-zinc-500">
-                            <a href="#" class="hover:text-white transition"><i data-lucide="disc" class="w-3.5 h-3.5"></i></a>
-                            <a href="#" class="hover:text-white transition"><i data-lucide="gamepad-2" class="w-3.5 h-3.5"></i></a>
-                            <a href="#" class="hover:text-white transition"><i data-lucide="twitter" class="w-3.5 h-3.5"></i></a>
-                            <a href="#" class="hover:text-white transition"><i data-lucide="youtube" class="w-3.5 h-3.5"></i></a>
-                            <a href="#" class="hover:text-white transition"><i data-lucide="github" class="w-3.5 h-3.5"></i></a>
+                        <div class="flex items-center justify-center md:justify-start gap-3 mt-2 text-zinc-500">
+                            <a href="#" class="hover:text-white transition"><i data-lucide="disc" class="w-4 h-4"></i></a>
+                            <a href="#" class="hover:text-white transition"><i data-lucide="gamepad-2" class="w-4 h-4"></i></a>
+                            <a href="#" class="hover:text-white transition"><i data-lucide="code" class="w-4 h-4"></i></a>
+                            <a href="#" class="hover:text-white transition"><i data-lucide="youtube" class="w-4 h-4"></i></a>
+                            <a href="#" class="hover:text-white transition"><i data-lucide="github" class="w-4 h-4"></i></a>
                         </div>
                     </div>
                 </div>
 
-                <!-- สถานะจำลอง (Discord Activity) -->
-                <div class="space-y-1.5 text-[11px] text-zinc-400 font-mono pt-2">
+                <!-- สถานะจำลอง -->
+                <div class="space-y-1.5 text-[11px] text-zinc-400 font-mono pt-1">
                     <div class="flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-purple-500"></span>
+                        <span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
                         <span class="text-zinc-300">Do Not Disturb</span> <span class="text-zinc-600">•</span> Playing Roblox
                     </div>
                     <div class="flex items-center gap-2">
@@ -85,68 +91,79 @@
                     </div>
                     <div class="flex items-center gap-2">
                         <span class="w-2 h-2 rounded-full bg-zinc-600"></span>
-                        <span class="text-zinc-300">Spotify</span> <span class="text-zinc-600">•</span> Not Listening
+                        <span class="text-zinc-300">Spotify</span> <span class="text-zinc-600">•</span> Natural Disaster
                     </div>
                 </div>
 
             </div>
         </div>
 
-        <!-- ส่วนล่าง: คอลเลกชันแบนเนอร์ปุ่มป้ายสไตล์เก๋ๆ + เครื่องเล่นเพลง -->
-        <div class="flex flex-col md:flex-row gap-6 items-end justify-between pt-4 border-t border-zinc-900">
+        <!-- ส่วนล่าง: คลื่นวิทยุ FM 1-17 (ซ้าย) + แบนเนอร์และเครื่องเล่นเพลง (ขวา) -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-end pt-4 border-t border-zinc-900/80">
             
-            <!-- คอลเลกชันลายกราฟิกคลื่นเสียงซ้าย -->
-            <div class="w-full md:w-1/2 opacity-40 hover:opacity-80 transition duration-300">
-                <div class="grid grid-cols-5 gap-2 text-[9px] text-zinc-600 font-mono">
-                    <div class="border-b border-zinc-800 pb-1">FM 1<br>~~/\~~</div>
-                    <div class="border-b border-zinc-800 pb-1">FM 2<br>/\/\/\</div>
-                    <div class="border-b border-zinc-800 pb-1">FM 3<br>||||||</div>
-                    <div class="border-b border-zinc-800 pb-1">FM 4<br>~~/\~~</div>
-                    <div class="border-b border-zinc-800 pb-1">FM 5<br>||||||</div>
-                    <div class="pt-1">FM 6<br>||||||</div>
-                    <div class="pt-1">FM 7<br>/\/\/\</div>
-                    <div class="pt-1">FM 8<br>/\/\/\</div>
-                    <div class="pt-1">FM 9<br>______</div>
-                    <div class="pt-1">FM 10<br>||||||</div>
-                </div>
+            <!-- คลื่นวิทยุ FM 1 - 17 (คลิกแล้วมีเสียงชิปสไตล์เรโทรแบบในคลิป) -->
+            <div class="md:col-span-7 grid grid-cols-5 gap-y-3 gap-x-2 text-[9px] text-zinc-600 font-mono select-none">
+                <div class="fm-box border-b border-zinc-900 pb-1" onclick="playBeep(440)">FM 1<br><span class="text-zinc-500">~~/\~~</span></div>
+                <div class="fm-box border-b border-zinc-900 pb-1" onclick="playBeep(520)">FM 2<br><span class="text-zinc-500">/\/\/\</span></div>
+                <div class="fm-box border-b border-zinc-900 pb-1" onclick="playBeep(600)">FM 3<br><span class="text-zinc-500">||||||</span></div>
+                <div class="fm-box border-b border-zinc-900 pb-1" onclick="playBeep(680)">FM 4<br><span class="text-zinc-500">~~/\~~</span></div>
+                <div class="fm-box border-b border-zinc-900 pb-1" onclick="playBeep(760)">FM 5<br><span class="text-zinc-500">||||||</span></div>
+                
+                <div class="fm-box border-b border-zinc-900 pb-1" onclick="playBeep(320)">FM 6<br><span class="text-zinc-500">||||||</span></div>
+                <div class="fm-box border-b border-zinc-900 pb-1" onclick="playBeep(380)">FM 7<br><span class="text-zinc-500">/\/\/\</span></div>
+                <div class="fm-box border-b border-zinc-900 pb-1" onclick="playBeep(420)">FM 8<br><span class="text-zinc-500">/\/\/\</span></div>
+                <div class="fm-box border-b border-zinc-900 pb-1" onclick="playBeep(480)">FM 9<br><span class="text-zinc-500">______</span></div>
+                <div class="fm-box border-b border-zinc-900 pb-1" onclick="playBeep(540)">FM 10<br><span class="text-zinc-500">||||||</span></div>
+
+                <div class="fm-box pb-1" onclick="playBeep(220)">FM 11<br><span class="text-zinc-500">||||||</span></div>
+                <div class="fm-box pb-1" onclick="playBeep(260)">FM 12<br><span class="text-zinc-500">~~/\~~</span></div>
+                <div class="fm-box pb-1" onclick="playBeep(300)">FM 13<br><span class="text-zinc-500">______</span></div>
+                <div class="fm-box pb-1" onclick="playBeep(340)">FM 14<br><span class="text-zinc-500">||||||</span></div>
+                <div class="fm-box pb-1" onclick="playBeep(400)">FM 15<br><span class="text-zinc-500">/\/\/\</span></div>
+                <div class="fm-box pb-1" onclick="playBeep(180)">FM 16<br><span class="text-zinc-500">______</span></div>
+                <div class="fm-box pb-1" onclick="playBeep(200)">FM 17<br><span class="text-zinc-500">||||||</span></div>
             </div>
 
-            <!-- กล่องด้านขวา: ปุ่มป้าย + เครื่องเล่นเพลง -->
-            <div class="w-full md:w-1/2 flex flex-col space-y-4">
+            <!-- ฝั่งขวา: แบนเนอร์ปุ่ม + เครื่องเล่นเพลงใช้งานได้จริง -->
+            <div class="md:col-span-5 flex flex-col space-y-4">
                 
-                <!-- ตารางป้ายแบนเนอร์ (88x31 Badges) -->
+                <!-- แบนเนอร์ป้าย 88x31 -->
                 <div class="grid grid-cols-4 gap-1.5">
-                    <a href="#" class="badge-btn bg-gradient-to-r from-blue-600 to-indigo-600 text-white">.hi!</a>
-                    <a href="#" class="badge-btn bg-purple-900 border border-purple-600 text-purple-200">rawr!</a>
+                    <a href="https://open.spotify.com/intl-th/track/6F3TZeOG2uKDNDbUgoOE3S" target="_blank" class="badge-btn bg-emerald-950 border border-emerald-800 text-emerald-300">.hi!</a>
+                    <a href="#" class="badge-btn bg-purple-950 border border-purple-800 text-purple-300">rawr!</a>
                     <a href="#" class="badge-btn bg-zinc-900 border border-zinc-700 text-zinc-300">88x31</a>
-                    <a href="#" class="badge-btn bg-red-900 text-red-200">arch.sys</a>
-                    <a href="#" class="badge-btn bg-blue-900 text-blue-200">.download</a>
-                    <a href="#" class="badge-btn bg-amber-900 text-amber-200">split@PC</a>
-                    <a href="#" class="badge-btn bg-zinc-800 text-zinc-400">focat:p</a>
-                    <a href="#" class="badge-btn bg-emerald-900 text-emerald-200">watameln</a>
+                    <a href="#" class="badge-btn bg-red-950 border border-red-800 text-red-300">arch.sys</a>
+                    <a href="#" class="badge-btn bg-blue-950 border border-blue-800 text-blue-300">.download</a>
+                    <a href="#" class="badge-btn bg-amber-950 border border-amber-800 text-amber-300">split@PC</a>
+                    <a href="#" class="badge-btn bg-zinc-900 border border-zinc-700 text-zinc-400">focat:p</a>
+                    <a href="#" class="badge-btn bg-emerald-950 border border-emerald-800 text-emerald-300">watameln</a>
                 </div>
 
-                <!-- เครื่องเล่นเพลงจำลอง (Music Player) -->
-                <div class="bg-zinc-900/60 border border-zinc-800/80 rounded-md p-2.5 flex flex-col space-y-2 text-xs font-mono">
+                <!-- เครื่องเล่นเพลง (เชื่อมต่อเพลง Natural Disaster จาก Spotify) -->
+                <div class="bg-zinc-900/80 border border-zinc-800/90 rounded-md p-3 flex flex-col space-y-2 text-xs font-mono shadow-lg">
                     <div class="flex items-center justify-between">
                         <div class="truncate pr-2">
-                            <span class="text-zinc-200 font-bold">OPL3 Demo 001</span>
+                            <span class="text-zinc-100 font-bold">Natural Disaster</span>
                             <span class="text-zinc-600 mx-1">-</span>
-                            <span class="text-zinc-500">naruto • MoonDriver</span>
+                            <span class="text-zinc-400">Spotify Audio</span>
                         </div>
-                        <div class="flex items-center gap-2 text-zinc-400 shrink-0">
-                            <button class="hover:text-white"><i data-lucide="skip-back" class="w-3.5 h-3.5"></i></button>
-                            <button class="hover:text-white"><i data-lucide="play" class="w-3.5 h-3.5"></i></button>
-                            <button class="hover:text-white"><i data-lucide="skip-forward" class="w-3.5 h-3.5"></i></button>
+                        <div class="flex items-center gap-2.5 text-zinc-300 shrink-0">
+                            <button onclick="togglePlay()" id="play-btn" class="hover:text-white bg-zinc-800 p-1.5 rounded transition">
+                                <i data-lucide="play" id="play-icon" class="w-3.5 h-3.5"></i>
+                            </button>
+                            <a href="https://open.spotify.com/intl-th/track/6F3TZeOG2uKDNDbUgoOE3S?si=fae13b36ff854687" target="_blank" class="hover:text-white bg-zinc-800 p-1.5 rounded transition" title="Open in Spotify">
+                                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                            </a>
                         </div>
                     </div>
-                    <!-- แถบเล่นเพลง -->
-                    <div class="w-full bg-zinc-800 h-1 rounded-full overflow-hidden">
-                        <div class="bg-zinc-400 h-full w-1/3"></div>
+                    
+                    <div class="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden">
+                        <div id="progress-bar" class="bg-emerald-500 h-full w-0 transition-all duration-300"></div>
                     </div>
-                    <div class="flex justify-between text-[9px] text-zinc-600">
-                        <span>1:08</span>
-                        <span>3:43</span>
+                    
+                    <div class="flex justify-between text-[9px] text-zinc-500">
+                        <span id="current-time">0:00</span>
+                        <span>Spotify Track</span>
                     </div>
                 </div>
 
@@ -156,8 +173,53 @@
 
     </div>
 
+    <!-- ซ่อน Spotify Embed จริงไว้สำหรับควบคุมการเล่นเสียง -->
+    <div style="display:none;">
+        <iframe id="spotify-iframe" src="https://open.spotify.com/embed/track/6F3TZeOG2uKDNDbUgoOE3S?utm_source=generator" width="300" height="80" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+    </div>
+
     <script>
         lucide.createIcons();
+
+        // ฟังก์ชันสร้างเสียงบี๊บเรโทร (เมื่อกดคลื่น FM 1-17)
+        function playBeep(freq) {
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = 'square';
+                osc.frequency.value = freq;
+                gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.15);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.15);
+            } catch(e) {
+                console.log("Audio Context not supported");
+            }
+        }
+
+        // ฟังก์ชันควบคุมการเล่นเพลงจำลองร่วมกับลิงก์ Spotify
+        let isPlaying = false;
+        function togglePlay() {
+            isPlaying = !isPlaying;
+            const playIcon = document.getElementById('play-icon');
+            const progressBar = document.getElementById('progress-bar');
+            
+            if (isPlaying) {
+                playIcon.setAttribute('data-lucide', 'pause');
+                progressBar.style.width = '100%';
+                document.getElementById('current-time').innerText = '3:40';
+                // เปิดลิงก์ฟังจริงบน Spotify ในแท็บใหม่ให้ด้วยเพื่อความสะดวก
+                window.open('https://open.spotify.com/intl-th/track/6F3TZeOG2uKDNDbUgoOE3S?si=fae13b36ff854687', '_blank');
+            } else {
+                playIcon.setAttribute('data-lucide', 'play');
+                progressBar.style.width = '0%';
+                document.getElementById('current-time').innerText = '0:00';
+            }
+            lucide.createIcons();
+        }
     </script>
 </body>
 </html>
