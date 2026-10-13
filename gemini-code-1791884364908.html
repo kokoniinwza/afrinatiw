@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>malice.nz - Profile</title>
+    <!-- Tailwind CSS สำหรับจัดแต่งหน้าเว็บ -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons สำหรับไอคอน -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background-color: #0b0b0b;
+            color: #d1d5db;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between p-4 sm:p-8">
+
+    <!-- ส่วนหลักตรงกลาง -->
+    <main class="w-full max-w-4xl mx-auto flex flex-col items-center justify-center my-auto space-y-8">
+        
+        <!-- ส่วนบน: ตัวละคร Roblox + ข้อมูลโปรไฟล์ -->
+        <div class="flex flex-col md:flex-row items-center justify-center gap-6 sm:gap-10 w-full">
+            
+            <!-- รูปอวาตาร์ Roblox (จำลอง) -->
+            <div class="w-44 h-56 sm:w-52 sm:h-64 bg-zinc-900 border border-zinc-800 rounded-2xl flex items-center justify-center overflow-hidden shadow-2xl relative">
+                <!-- ใส่ลิงก์รูปตัวละครของคุณตรง src ด้านล่าง -->
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=400&auto=format&fit=crop" alt="Avatar" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition duration-300">
+            </div>
+
+            <!-- รายละเอียดโปรไฟล์ -->
+            <div class="flex flex-col items-center md:items-start text-center md:text-left space-y-4">
+                <div class="flex items-center gap-3">
+                    <!-- รูปโปรไฟล์กลมเล็ก -->
+                    <div class="w-12 h-12 rounded-full overflow-hidden border border-zinc-700">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h1 class="text-xl sm:text-2xl font-bold text-white tracking-wider">hi, i'm ทิว</h1>
+                        <p class="text-xs sm:text-sm text-zinc-400">i love coding & web development</p>
+                    </div>
+                </div>
+
+                <!-- สถานะจำลอง (Discord / Activity) -->
+                <div class="space-y-1.5 text-xs sm:text-sm bg-zinc-900/60 border border-zinc-800/80 p-3 rounded-xl w-full max-w-xs">
+                    <div class="flex items-center gap-2 text-zinc-300">
+                        <span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
+                        <span class="text-zinc-400">Do Not Disturb</span> <span class="text-zinc-500">•</span> Playing Roblox
+                    </div>
+                    <div class="flex items-center gap-2 text-zinc-300">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                        <span class="text-zinc-400">Online</span> <span class="text-zinc-500">•</span> Coding Next.js
+                    </div>
+                    <div class="flex items-center gap-2 text-zinc-300">
+                        <span class="w-2 h-2 rounded-full bg-zinc-600"></span>
+                        <span class="text-zinc-400">Spotify</span> <span class="text-zinc-500">•</span> Not Listening
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ส่วนล่าง: แบนเนอร์ลิงก์ / ปุ่มต่างๆ (สไตล์ป้ายไอดอลเท่ๆ) -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full max-w-2xl pt-4">
+            <!-- ปุ่ม/การ์ดลิงก์ที่ 1 -->
+            <a href="https://github.com" target="_blank" class="bg-zinc-900 border border-zinc-800 hover:border-zinc-600 p-3 rounded-xl text-xs font-semibold flex items-center justify-between transition duration-200 group">
+                <span class="text-zinc-300 group-hover:text-white">GitHub</span>
+                <i data-lucide="external-link" class="w-4 h-4 text-zinc-500"></i>
+            </a>
+            <!-- ปุ่ม/การ์ดลิงก์ที่ 2 -->
+            <a href="https://discord.com" target="_blank" class="bg-zinc-900 border border-zinc-800 hover:border-zinc-600 p-3 rounded-xl text-xs font-semibold flex items-center justify-between transition duration-200 group">
+                <span class="text-zinc-300 group-hover:text-white">Discord</span>
+                <i data-lucide="external-link" class="w-4 h-4 text-zinc-500"></i>
+            </a>
+            <!-- ปุ่ม/การ์ดลิงก์ที่ 3 -->
+            <a href="https://roblox.com" target="_blank" class="bg-zinc-900 border border-zinc-800 hover:border-zinc-600 p-3 rounded-xl text-xs font-semibold flex items-center justify-between transition duration-200 group">
+                <span class="text-zinc-300 group-hover:text-white">Roblox</span>
+                <i data-lucide="external-link" class="w-4 h-4 text-zinc-500"></i>
+            </a>
+            <!-- ปุ่ม/การ์ดลิงก์ที่ 4 -->
+            <a href="#" class="bg-zinc-900 border border-zinc-800 hover:border-zinc-600 p-3 rounded-xl text-xs font-semibold flex items-center justify-between transition duration-200 group">
+                <span class="text-zinc-300 group-hover:text-white">Portfolio</span>
+                <i data-lucide="external-link" class="w-4 h-4 text-zinc-500"></i>
+            </a>
+        </div>
+
+        <!-- เครื่องเล่นเพลงจำลองด้านล่าง -->
+        <div class="w-full max-w-2xl bg-zinc-900/80 border border-zinc-800/80 rounded-xl p-3 flex flex-col space-y-2">
+            <div class="flex items-center justify-between text-xs text-zinc-400">
+                <div>
+                    <span class="font-bold text-zinc-200">OPL3 Demo 001</span>
+                    <span class="text-zinc-500 mx-1">•</span>
+                    <span>naruto - MoonDriver Demo</span>
+                </div>
+                <div class="flex items-center gap-3 text-zinc-400">
+                    <button class="hover:text-white"><i data-lucide="skip-back" class="w-4 h-4"></i></button>
+                    <button class="hover:text-white"><i data-lucide="play" class="w-4 h-4"></i></button>
+                    <button class="hover:text-white"><i data-lucide="skip-forward" class="w-4 h-4"></i></button>
+                </div>
+            </div>
+            <!-- หลอดความยาวเพลง -->
+            <div class="w-full bg-zinc-800 h-1 rounded-full overflow-hidden">
+                <div class="bg-zinc-400 h-full w-1/3"></div>
+            </div>
+            <div class="flex justify-between text-[10px] text-zinc-500">
+                <span>1:08</span>
+                <span>3:43</span>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- รันไอคอน Lucide -->
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
