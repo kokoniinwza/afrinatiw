@@ -17,14 +17,14 @@ a{color:inherit;text-decoration:none}
 button{background:none;border:0;color:inherit;font:inherit;cursor:pointer}
 .wrap{max-width:960px;margin:0 auto}
 
-/* intro animation: hero first, then everything else fades in */
+
 @keyframes rise{from{opacity:0;transform:translateY(10px);filter:blur(4px)}to{opacity:1;transform:none;filter:blur(0)}}
 @keyframes fade{from{opacity:0;filter:blur(4px)}to{opacity:1;filter:blur(0)}}
 .a{opacity:0;animation:rise .7s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:var(--d,0s)}
 .f{opacity:0;animation:fade .9s ease forwards;animation-delay:var(--d,0s)}
 @media(prefers-reduced-motion:reduce){.a,.f{animation:none;opacity:1}}
 
-/* hero */
+
 .hero{display:grid;grid-template-columns:260px 1fr;gap:28px;align-items:center}
 #avatar{width:210px;height:auto;margin-left:14px;display:block;filter:grayscale(1)}
 .hero.noav{grid-template-columns:1fr}
@@ -44,7 +44,7 @@ h1 b{font-family:'Space Mono',monospace;font-weight:700;color:#fff;margin-left:.
 .status div[hidden]{display:none}
 .idle{color:#b8a46a}.dnd{color:#b08585}.on{color:#8fae8f}.off{color:#555}
 
-/* lower */
+
 .lower{display:grid;grid-template-columns:1fr 1fr;gap:44px;margin-top:48px;align-items:start}
 .left{display:grid;min-height:240px}
 .left>section{grid-area:1/1;transition:opacity .35s}
@@ -75,7 +75,7 @@ h1 b{font-family:'Space Mono',monospace;font-weight:700;color:#fff;margin-left:.
 .scope canvas{width:100%;height:34px;display:block}
 .scope span{display:block;margin-top:5px;font-size:10px;color:#3d3d3d;letter-spacing:.04em;transition:color .15s}
 
-/* songs i like */
+
 .plist{display:grid;grid-template-rows:1fr;margin-bottom:14px;transition:grid-template-rows .4s cubic-bezier(.2,.7,.2,1),opacity .3s ease,margin-bottom .4s cubic-bezier(.2,.7,.2,1)}
 .pli{overflow:hidden;min-height:0}
 .plist.closed{grid-template-rows:0fr;opacity:0;margin-bottom:0;pointer-events:none}
@@ -96,7 +96,7 @@ h1 b{font-family:'Space Mono',monospace;font-weight:700;color:#fff;margin-left:.
 #list li .du{color:#666;font-variant-numeric:tabular-nums}
 #list li.empty{cursor:default;color:#555;grid-template-columns:1fr}
 
-/* player */
+
 .player{margin-top:6px}
 .pin{display:flex;flex-direction:column;gap:16px}
 .row{display:flex;align-items:center;gap:12px}
@@ -130,7 +130,7 @@ h1 b{font-family:'Space Mono',monospace;font-weight:700;color:#fff;margin-left:.
  .status{margin-left:0}
 }
 
-/* floating name */
+
 .name{display:inline-block;position:relative;animation:float 3.4s ease-in-out infinite;outline:0}
 @keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-5px) rotate(-.6deg)}}
 @media(prefers-reduced-motion:reduce){.name{animation:none}}
@@ -207,15 +207,14 @@ h1 b{font-family:'Space Mono',monospace;font-weight:700;color:#fff;margin-left:.
 <audio id="audio" preload="metadata"></audio>
 
 <script>
-/* ===== แก้ตรงนี้ได้เลย ===== */
-/* เพิ่มเพลง: copy 1 บรรทัดแล้วเปลี่ยนค่า  (album = ข้อความเล็กๆ ด้านขวา, ไม่ใส่ก็ได้) */
+
 const TRACKS=[
  {title:'Natural Disaster',artist:'Enon',album:'',src:'music/natural-disaster.mp3'},
  {title:'Misery (The Living Tombstone)',artist:'The Living Tombstone',album:'',src:'music/Misery.mp3'},
  {title:'Hall',artist:'Frums',album:'',src:'music/Hall.mp3'},
  {title:'My Kind Of Woman',artist:'Mac DeMarco',album:'',src:'music/My-Kind-Of-Woman.mp3'},
  {title:'Across The Sea (Hadashi Cover)',artist:'Hadashi',album:'',src:'music/Across-The-Sea.mp3'},
- {title:'Aegleseeker',artist:'Silentroom vs Frums',album:'Arcaea',src:'music/aegleseeker.mp3'},
+ {title:'Aegleseeker',artist:'Silentroom vs Frums',album:'',src:'music/aegleseeker.mp3'},
  {title:'Champagne Supernova',artist:'Oasis',album:'',src:'music/champagne-supernova.mp3'},
  {title:"Charlie's Inferno",artist:'That Handsome Devil',album:'',src:"music/charlies-inferno.mp3"},
  {title:'Parallel Universe Shifter',artist:'Camellia',album:'',src:'music/parallel-universe-shifter.mp3'},
