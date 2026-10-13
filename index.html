@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>afrinatiw - Profile</title>
-    <!-- Tailwind CSS สำหรับจัดแต่งหน้าเว็บ -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons สำหรับไอคอน -->
-    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
         body {
@@ -15,100 +13,238 @@
             background-color: #0b0b0b;
             color: #d1d5db;
         }
+        /* กำหนดขนาดที่แน่นอนและจัดระเบียบองค์ประกอบ */
+        .page-container {
+            max-width: 960px; /* ใกล้เคียงขนาดหน้าจอต้นฉบับ */
+            margin: 0 auto;
+            padding: 40px;
+        }
+        /* กำหนดลักษณะเฉพาะของแบนเนอร์ลิงก์สไตล์ 'malice' */
+        .malice-link {
+            transition: all 0.2s;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: white;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+            overflow: hidden; /* สำหรับ hover effect */
+        }
+        .malice-link:hover {
+            filter: brightness(1.2);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-between p-4 sm:p-8">
+<body class="min-h-screen">
 
-    <!-- ส่วนหลักตรงกลาง -->
-    <main class="w-full max-w-4xl mx-auto flex flex-col items-center justify-center my-auto space-y-8">
+    <div class="page-container flex flex-col items-center justify-between space-y-12">
         
-        <!-- ส่วนบน: ตัวละคร Roblox + ข้อมูลโปรไฟล์ -->
-        <div class="flex flex-col md:flex-row items-center justify-center gap-6 sm:gap-10 w-full">
+        <!-- ส่วนบน: ตัวละครและโปรไฟล์ (จัดตำแหน่งและขนาดใหม่) -->
+        <div class="flex flex-col md:flex-row items-center gap-10 w-full justify-center">
             
-            <!-- รูปอวาตาร์ Roblox (เปลี่ยน URL รูปภาพของคุณได้ที่ src) -->
-            <div class="w-44 h-56 sm:w-52 sm:h-64 bg-zinc-900 border border-zinc-800 rounded-2xl flex items-center justify-center overflow-hidden shadow-2xl relative">
-                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=400&auto=format&fit=crop" alt="Avatar" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition duration-300">
+            <!-- รูปตัวละคร SVG (สร้างให้เหมือนต้นฉบับ) -->
+            <div class="w-48 h-64 border border-zinc-800 rounded-2xl flex items-center justify-center overflow-hidden bg-zinc-900/30">
+                <svg width="100%" height="100%" viewBox="0 0 100 133" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="100" height="133" fill="#0b0b0b"/>
+                    <rect x="25" y="10" width="50" height="50" rx="6" fill="#18181b"/> <!-- หัว -->
+                    <rect x="25" y="65" width="50" height="60" rx="4" fill="#27272a"/> <!-- ลำตัว -->
+                    <rect x="5" y="65" width="15" height="40" rx="3" fill="#111111"/> <!-- แขนซ้าย -->
+                    <rect x="80" y="65" width="15" height="40" rx="3" fill="#111111"/> <!-- แขนขวา -->
+                    <ellipse cx="28" cy="18" rx="8" ry="4" transform="rotate(-30 28 18)" fill="#111111"/> <!-- หู/เขาซ้าย -->
+                    <ellipse cx="72" cy="18" rx="8" ry="4" transform="rotate(30 72 18)" fill="#111111"/> <!-- หู/เขาขวา -->
+                    <path d="M40 35 H60" stroke="#333" stroke-width="1.5"/> <!-- ปาก -->
+                    <circle cx="38" cy="28" r="3" fill="#333"/> <!-- ตาซ้าย -->
+                    <circle cx="62" cy="28" r="3" fill="#333"/> <!-- ตาขวา -->
+                    <rect x="25" y="10" width="50" height="133" fill="url(#hair-gradient)" fill-opacity="0.2"/>
+                    <defs>
+                        <linearGradient id="hair-gradient" x1="50" y1="10" x2="50" y2="133" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#222"/>
+                            <stop offset="1" stop-color="#0b0b0b"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
             </div>
 
-            <!-- รายละเอียดโปรไฟล์ -->
-            <div class="flex flex-col items-center md:items-start text-center md:text-left space-y-4">
-                <div class="flex items-center gap-3">
-                    <!-- รูปโปรไฟล์กลมเล็ก -->
-                    <div class="w-12 h-12 rounded-full overflow-hidden border border-zinc-700">
-                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=150&auto=format&fit=crop" alt="Profile" class="w-full h-full object-cover">
+            <!-- รายละเอียดโปรไฟล์ (จัดตำแหน่งใหม่) -->
+            <div class="flex flex-col items-start space-y-4">
+                <div class="flex items-center gap-4">
+                    <!-- รูปโปรไฟล์กลม (จำลอง) -->
+                    <div class="w-16 h-16 rounded-full overflow-hidden border border-zinc-800">
+                        <img src="https://images.unsplash.com/photo-1549497538-303791108f94?q=80&w=200&auto=format&fit=crop" alt="Profile" class="w-full h-full object-cover">
                     </div>
                     <div>
-                        <h1 class="text-xl sm:text-2xl font-bold text-white tracking-wider">hi, i'm afrinatiw</h1>
-                        <p class="text-xs sm:text-sm text-zinc-400">i love coding & web development</p>
+                        <h1 class="text-2xl font-bold text-white tracking-wide">hi, i'm afrinatiw</h1>
+                        <p class="text-sm text-zinc-500">i love coding & web development</p>
                     </div>
                 </div>
 
-                <!-- สถานะจำลอง (Discord / Activity) -->
-                <div class="space-y-1.5 text-xs sm:text-sm bg-zinc-900/60 border border-zinc-800/80 p-3 rounded-xl w-full max-w-xs">
-                    <div class="flex items-center gap-2 text-zinc-300">
+                <!-- สถานะจำลอง (Discord / Activity) จัดตำแหน่งใหม่ -->
+                <div class="space-y-1 text-xs text-zinc-500 p-2 bg-zinc-900/40 rounded-lg w-fit">
+                    <div class="flex items-center gap-2">
                         <span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
-                        <span class="text-zinc-400">Do Not Disturb</span> <span class="text-zinc-500">•</span> Playing Roblox
+                        <span class="text-zinc-400">Do Not Disturb</span> <span class="mx-1">•</span> Playing Roblox
                     </div>
-                    <div class="flex items-center gap-2 text-zinc-300">
+                    <div class="flex items-center gap-2">
                         <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                        <span class="text-zinc-400">Online</span> <span class="text-zinc-500">•</span> Coding Next.js
+                        <span class="text-zinc-400">Online</span> <span class="mx-1">•</span> Coding Next.js
                     </div>
-                    <div class="flex items-center gap-2 text-zinc-300">
+                    <div class="flex items-center gap-2">
                         <span class="w-2 h-2 rounded-full bg-zinc-600"></span>
-                        <span class="text-zinc-400">Spotify</span> <span class="text-zinc-500">•</span> Not Listening
+                        <span class="text-zinc-400">Spotify</span> <span class="mx-1">•</span> Not Listening
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ส่วนล่าง: แบนเนอร์ลิงก์ / ปุ่มต่างๆ -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 w-full max-w-2xl pt-4">
-            <a href="https://github.com/afrinatiw" target="_blank" class="bg-zinc-900 border border-zinc-800 hover:border-zinc-600 p-3 rounded-xl text-xs font-semibold flex items-center justify-between transition duration-200 group">
-                <span class="text-zinc-300 group-hover:text-white">GitHub</span>
-                <i data-lucide="external-link" class="w-4 h-4 text-zinc-500"></i>
+        <!-- ส่วนล่าง: แบนเนอร์ลิงก์ที่ "เหมือนจริง" (ใช้เทคนิค SVG) -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full pt-8">
+            
+            <!-- แบนเนอร์ 1: GitHub -->
+            <a href="https://github.com/afrinatiw" target="_blank" class="malice-link h-12 rounded-lg" style="background-image: url('data:image/svg+xml,%3Csvg width=\'240\' height=\'48\' viewBox=\'0 0 240 48\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Crect width=\'240\' height=\'48\' fill=\'%2318181b\'/%3E%3Cpath d=\'M20 20 L220 20\' stroke=\'%23a1a1aa\' stroke-width=\'1.5\'/%3E%3Cpath d=\'M20 28 L220 28\' stroke=\'%23a1a1aa\' stroke-width=\'1.5\'/%3E%3Cpath d=\'M20 36 L220 36\' stroke=\'%23a1a1aa\' stroke-width=\'1.5\'/%3E%3C/svg%3E')">
+                GitHub
             </a>
-            <a href="https://discord.com" target="_blank" class="bg-zinc-900 border border-zinc-800 hover:border-zinc-600 p-3 rounded-xl text-xs font-semibold flex items-center justify-between transition duration-200 group">
-                <span class="text-zinc-300 group-hover:text-white">Discord</span>
-                <i data-lucide="external-link" class="w-4 h-4 text-zinc-500"></i>
+            
+            <!-- แบนเนอร์ 2: Discord -->
+            <a href="https://discord.com" target="_blank" class="malice-link h-12 rounded-lg" style="background-image: url('data:image/svg+xml,%3Csvg width=\'240\' height=\'48\' viewBox=\'0 0 240 48\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Crect width=\'240\' height=\'48\' fill=\'%234c1d95\'/%3E%3Crect x=\'20\' y=\'8\' width=\'200\' height=\'16\' fill=\'%238b5cf6\' fill-opacity=\'0.2\'/%3E%3Crect x=\'20\' y=\'24\' width=\'200\' height=\'16\' fill=\'%238b5cf6\' fill-opacity=\'0.2\'/%3E%3C/svg%3E')">
+                Discord
             </a>
-            <a href="https://roblox.com" target="_blank" class="bg-zinc-900 border border-zinc-800 hover:border-zinc-600 p-3 rounded-xl text-xs font-semibold flex items-center justify-between transition duration-200 group">
-                <span class="text-zinc-300 group-hover:text-white">Roblox</span>
-                <i data-lucide="external-link" class="w-4 h-4 text-zinc-500"></i>
-            </a>
-            <a href="#" class="bg-zinc-900 border border-zinc-800 hover:border-zinc-600 p-3 rounded-xl text-xs font-semibold flex items-center justify-between transition duration-200 group">
-                <span class="text-zinc-300 group-hover:text-white">Portfolio</span>
-                <i data-lucide="external-link" class="w-4 h-4 text-zinc-500"></i>
-            </a>
+            
+            <!-- แบนเนอร์ 3: Roblox -->
+            <a href="https://roblox.com" target="_blank" class="malice-link h-12 rounded-lg" style="background-image: url('data:image/svg+xml,%3Csvg width=\'240\' height=\'48\' viewBox=\'0 0 240 48\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Crect width=\'240\' height=\'48\' fill=\'%230b0b0b\'/%3E%3Crect x=\'0\' y=\'0\' width=\'240\' height=\'48\' stroke=\'%233f3f46\' stroke-width=\'2\'/%3E%3Crect x=\'10\' y=\'10\' width=\'20\' height=\'28\' fill=\'%233f3f46\'/%3E%3Crect x=\'40\' y=\'10\' width=\'20\' height=\ขอโทษที่ทำให้สับสนครับ เข้าใจแล้วว่าโค้ดที่ให้ไปรอบที่แล้วออกมาหน้าตาไม่เหมือนต้นฉบับเลย เป็นเพราะโค้ดชุดเก่าใช้สไตล์การจัดวางและการออกแบบที่ผมทำขึ้นมาใหม่ แทนที่จะเลียนแบบหน้าตาของ `malice.nz` ครับ
+
+เพื่อให้คุณได้เว็บที่หน้าตาเหมือนต้นฉบับมากที่สุด โดยยังคงสามารถใช้ไฟล์ `index.html` ไฟล์เดียวขึ้น GitHub Pages ได้ง่ายๆ ผมจึงได้ปรับแก้โค้ดใหม่ทั้งหมดให้เป็นสไตล์ที่ถูกต้องตามภาพต้นฉบับของคุณครับ โค้ดชุดใหม่นี้จะแก้ไขเรื่องลักษณะของตัวละครหลักและกล่องแบนเนอร์ลิงก์ที่แตกต่างกันอย่างชัดเจน ให้กลับมามีหน้าตาและสไตล์ที่ถูกต้องตามที่คุณต้องการครับ
+
+---
+
+### โค้ด HTML สำหรับไฟล์ `index.html` (ปรับปรุงใหม่ให้เหมือนต้นฉบับ)
+
+นำโค้ดด้านล่างนี้ทั้งหมดไปอัปเดตแทนที่โค้ดเดิมในไฟล์ `index.html` บน GitHub ของคุณ แล้วรอ 1-2 นาทีเพื่อดูผลลัพธ์ครับ:
+
+```html
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>afrinatiw - Profile</title>
+    <!-- Tailwind CSS -->
+    <script src="[https://cdn.tailwindcss.com](https://cdn.tailwindcss.com)"></script>
+    <style>
+        @import url('[https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap](https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap)');
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background-color: #0b0b0b;
+            color: #d1d5db;
+        }
+        /* กำหนดขนาดที่แน่นอนและจัดระเบียบองค์ประกอบ */
+        .page-container {
+            max-width: 960px; /* ใกล้เคียงขนาดหน้าจอต้นฉบับ */
+            margin: 0 auto;
+            padding: 40px;
+        }
+        /* กำหนดลักษณะเฉพาะของแบนเนอร์ลิงก์สไตล์ 'malice' */
+        .malice-link {
+            transition: all 0.2s;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: white;
+            background-size: cover;
+            background-position: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+            overflow: hidden; /* สำหรับ hover effect */
+        }
+        .malice-link:hover {
+            filter: brightness(1.2);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <div class="page-container flex flex-col items-center justify-between space-y-12">
+        
+        <!-- ส่วนบน: ตัวละครและโปรไฟล์ (จัดตำแหน่งและขนาดใหม่) -->
+        <div class="flex flex-col md:flex-row items-center gap-10 w-full justify-center">
+            
+            <!-- รูปตัวละคร SVG (สร้างให้เหมือนต้นฉบับ) -->
+            <div class="w-48 h-64 border border-zinc-800 rounded-2xl flex items-center justify-center overflow-hidden bg-zinc-900/30">
+                <svg width="100%" height="100%" viewBox="0 0 100 133" fill="none" xmlns="[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)">
+                    <rect width="100" height="133" fill="#0b0b0b"/>
+                    <rect x="25" y="10" width="50" height="50" rx="6" fill="#18181b"/> <!-- หัว -->
+                    <rect x="25" y="65" width="50" height="60" rx="4" fill="#27272a"/> <!-- ลำตัว -->
+                    <rect x="5" y="65" width="15" height="40" rx="3" fill="#111111"/> <!-- แขนซ้าย -->
+                    <rect x="80" y="65" width="15" height="40" rx="3" fill="#111111"/> <!-- แขนขวา -->
+                    <ellipse cx="28" cy="18" rx="8" ry="4" transform="rotate(-30 28 18)" fill="#111111"/> <!-- หู/เขาซ้าย -->
+                    <ellipse cx="72" cy="18" rx="8" ry="4" transform="rotate(30 72 18)" fill="#111111"/> <!-- หู/เขาขวา -->
+                    <path d="M40 35 H60" stroke="#333" stroke-width="1.5"/> <!-- ปาก -->
+                    <circle cx="38" cy="28" r="3" fill="#333"/> <!-- ตาซ้าย -->
+                    <circle cx="62" cy="28" r="3" fill="#333"/> <!-- ตาขวา -->
+                    <rect x="25" y="10" width="50" height="133" fill="url(#hair-gradient)" fill-opacity="0.2"/>
+                    <defs>
+                        <linearGradient id="hair-gradient" x1="50" y1="10" x2="50" y2="133" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#222"/>
+                            <stop offset="1" stop-color="#0b0b0b"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+
+            <!-- รายละเอียดโปรไฟล์ (จัดตำแหน่งใหม่) -->
+            <div class="flex flex-col items-start space-y-4">
+                <div class="flex items-center gap-4">
+                    <!-- รูปโปรไฟล์กลม (จำลอง) -->
+                    <div class="w-16 h-16 rounded-full overflow-hidden border border-zinc-800">
+                        <img src="[https://images.unsplash.com/photo-1549497538-303791108f94?q=80&w=200&auto=format&fit=crop](https://images.unsplash.com/photo-1549497538-303791108f94?q=80&w=200&auto=format&fit=crop)" alt="Profile" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h1 class="text-2xl font-bold text-white tracking-wide">hi, i'm afrinatiw</h1>
+                        <p class="text-sm text-zinc-500">i love coding & web development</p>
+                    </div>
+                </div>
+
+                <!-- สถานะจำลอง (Discord / Activity) จัดตำแหน่งใหม่ -->
+                <div class="space-y-1 text-xs text-zinc-500 p-2 bg-zinc-900/40 rounded-lg w-fit">
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
+                        <span class="text-zinc-400">Do Not Disturb</span> <span class="mx-1">•</span> Playing Roblox
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                        <span class="text-zinc-400">Online</span> <span class="mx-1">•</span> Coding Next.js
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-zinc-600"></span>
+                        <span class="text-zinc-400">Spotify</span> <span class="mx-1">•</span> Not Listening
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- เครื่องเล่นเพลงจำลองด้านล่าง -->
-        <div class="w-full max-w-2xl bg-zinc-900/80 border border-zinc-800/80 rounded-xl p-3 flex flex-col space-y-2">
-            <div class="flex items-center justify-between text-xs text-zinc-400">
-                <div>
-                    <span class="font-bold text-zinc-200">OPL3 Demo 001</span>
-                    <span class="text-zinc-500 mx-1">•</span>
-                    <span>naruto - MoonDriver Demo</span>
-                </div>
-                <div class="flex items-center gap-3 text-zinc-400">
-                    <button class="hover:text-white"><i data-lucide="skip-back" class="w-4 h-4"></i></button>
-                    <button class="hover:text-white"><i data-lucide="play" class="w-4 h-4"></i></button>
-                    <button class="hover:text-white"><i data-lucide="skip-forward" class="w-4 h-4"></i></button>
-                </div>
-            </div>
-            <div class="w-full bg-zinc-800 h-1 rounded-full overflow-hidden">
-                <div class="bg-zinc-400 h-full w-1/3"></div>
-            </div>
-            <div class="flex justify-between text-[10px] text-zinc-500">
-                <span>1:08</span>
-                <span>3:43</span>
-            </div>
-        </div>
-
-    </main>
-
-    <!-- รันไอคอน Lucide -->
-    <script>
-        lucide.createIcons();
-    </script>
-</body>
-</html>
+        <!-- ส่วนล่าง: แบนเนอร์ลิงก์ที่ "เหมือนจริง" (ใช้เทคนิค SVG) -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full pt-8">
+            
+            <!-- แบนเนอร์ 1: GitHub -->
+            <a href="[https://github.com/afrinatiw](https://github.com/afrinatiw)" target="_blank" class="malice-link h-12 rounded-lg" style="background-image: url('data:image/svg+xml,%3Csvg width=\'240\' height=\'48\' viewBox=\'0 0 240 48\' fill=\'none\' xmlns=\'[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)\'%3E%3Crect width=\'240\' height=\'48\' fill=\'%2318181b\'/%3E%3Cpath d=\'M20 20 L220 20\' stroke=\'%23a1a1aa\' stroke-width=\'1.5\'/%3E%3Cpath d=\'M20 28 L220 28\' stroke=\'%23a1a1aa\' stroke-width=\'1.5\'/%3E%3Cpath d=\'M20 36 L220 36\' stroke=\'%23a1a1aa\' stroke-width=\'1.5\'/%3E%3C/svg%3E')">
+                GitHub
+            </a>
+            
+            <!-- แบนเนอร์ 2: Discord -->
+            <a href="[https://discord.com](https://discord.com)" target="_blank" class="malice-link h-12 rounded-lg" style="background-image: url('data:image/svg+xml,%3Csvg width=\'240\' height=\'48\' viewBox=\'0 0 240 48\' fill=\'none\' xmlns=\'[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)\'%3E%3Crect width=\'240\' height=\'48\' fill=\'%234c1d95\'/%3E%3Crect x=\'20\' y=\'8\' width=\'200\' height=\'16\' fill=\'%238b5cf6\' fill-opacity=\'0.2\'/%3E%3Crect x=\'20\' y=\'24\' width=\'200\' height=\'16\' fill=\'%238b5cf6\' fill-opacity=\'0.2\'/%3E%3C/svg%3E')">
+                Discord
+            </a>
+            
+            <!-- แบนเนอร์ 3: Roblox -->
+            <a href="[https://roblox.com](https://roblox.com)" target="_blank" class="malice-link h-12 rounded-lg" style="background-image: url('data:image/svg+xml,%3Csvg width=\'240\' height=\'48\' viewBox=\'0 0 240 48\' fill=\'none\' xmlns=\'[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)\'%3E%3Crect width=\'240\' height=\'48\' fill=\'%230b0b0b\'/%3E%3Crect x=\'0\' y=\'0\' width=\'240\' height=\'48\' stroke=\'%233f3f46\' stroke-width=\'2\'/%3E%3Crect x=\'10\' y=\'10\' width=\'20\' height=\'28\' fill=\'%233f3f46\'/%3E%3Crect x=\'40\' y=\'10\' width=\'20\' height=\
